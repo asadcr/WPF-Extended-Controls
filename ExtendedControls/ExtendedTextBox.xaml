@@ -1,0 +1,31 @@
+﻿<UserControl x:Class="ExtendedControls.ExtendedTextBox"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:ExtendedControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="25" d:DesignWidth="200">
+    <UserControl.Resources>
+        <ControlTemplate x:Key="TextBoxBaseControlTemplate" TargetType="{x:Type TextBoxBase}">
+            <Border Background="{TemplateBinding Background}" 
+                x:Name="Bd" BorderBrush="Gray"
+                BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="4">
+                <ScrollViewer x:Name="PART_ContentHost"/>
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="IsEnabled" Value="False">
+                    <Setter Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" TargetName="Bd"/>
+                    <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}"/>
+                </Trigger>
+                <Trigger Property="IsFocused" Value="True">
+                    <Setter Property="BorderBrush" TargetName="Bd" Value="#338bce"/>
+                    <Setter Property="BorderThickness" TargetName="Bd" Value="1"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <TextBox x:Name="textBox" Template="{StaticResource TextBoxBaseControlTemplate}" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" Margin="0" FontSize="12" FontFamily="Segoe UI" TextWrapping="Wrap" Text="TextBox" />
+    </Grid>
+</UserControl>
